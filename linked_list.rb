@@ -1,5 +1,5 @@
 class LinkedList
-  attr_reader :head,:tail
+  attr_reader :head, :tail
   def initialize(data)
     #tail always points to a dummy node
     @tail = Node.new
@@ -23,6 +23,7 @@ class LinkedList
       @tail.data = data
       @tail = @tail.next_node
     else
+      puts "'append' failed"
       puts "need data of type #{@type}"
     end
   end
@@ -32,6 +33,7 @@ class LinkedList
       new = Node.new(data,@head)
       @head = new
     else
+      puts "'prepend' failed"
       puts "need data of type #{@type}"
     end
   end
@@ -45,6 +47,23 @@ class LinkedList
       curr_node = curr_node.next_node
     end
     return size
+  end
+
+  def at(index)
+    if index < self.size && index >= 0 && index.is_a?(@type)
+      count = 0
+      at = nil
+      curr_node = @head
+      while count <= index
+        at = curr_node if count == index
+        curr_node = curr_node.next_node
+        count += 1
+      end
+    else
+      puts "'at' failed"
+      puts "index needs to be in Linked List of size #{self.size}"
+    end
+    return at
   end
 
 
@@ -64,3 +83,4 @@ list = LinkedList.new(0)
 (11..20).each do |i| list.prepend(i) end
 puts "LL of size #{list.size}"
 list.disp
+puts "LL at i = 10 is #{list.at(10)}"
