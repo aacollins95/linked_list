@@ -1,4 +1,5 @@
 class LinkedList
+  attr_reader :head,:tail
   def initialize(data)
     #tail always points to a dummy node
     @tail = Node.new
