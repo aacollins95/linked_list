@@ -66,7 +66,14 @@ class LinkedList
     return at
   end
 
-
+  def pop
+    #remove last item from LL
+    node_i = @head
+    while node_i.next_node.next_node != @tail do node_i = node_i.next_node end
+    data = node_i.next_node.data
+    node_i.next_node = @tail
+    return data
+  end
 end
 
 class Node
@@ -82,5 +89,6 @@ list = LinkedList.new(0)
 (1..10).each do |i| list.append(i) end
 (11..20).each do |i| list.prepend(i) end
 puts "LL of size #{list.size}"
+7.times do list.pop end
+
 list.disp
-puts "LL at i = 10 is #{list.at(10)}"
