@@ -74,6 +74,22 @@ class LinkedList
     node_i.next_node = @tail
     return data
   end
+
+  def contains?(data)
+    #returns true if the given data is in the LL
+    if data.is_a?(@type)
+      data_found = false
+      curr_node = @head
+      while curr_node != @last
+        data_found = true if data == curr_node.data
+        curr_node = curr_node.next_node
+      end
+    else
+      puts "'contains?' failed"
+      puts "need data of type #{@type}"
+    end
+    return data_found
+  end
 end
 
 class Node
@@ -88,7 +104,9 @@ end
 list = LinkedList.new(0)
 (1..10).each do |i| list.append(i) end
 (11..20).each do |i| list.prepend(i) end
-puts "LL of size #{list.size}"
-7.times do list.pop end
 
+7.times do list.pop end
+puts "LL of size #{list.size}"
 list.disp
+
+puts list.contains?(3)
