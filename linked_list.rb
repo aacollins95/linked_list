@@ -35,6 +35,16 @@ class LinkedList
     end
   end
 
+  def size
+    #gets length of LL
+    curr_node = @head
+    size = 0
+    while curr_node != @tail
+      size += 1
+      curr_node = curr_node.next_node
+    end
+    return size
+  end
 
 
 end
@@ -51,4 +61,5 @@ end
 list = LinkedList.new(0)
 (1..10).each do |i| list.append(i) end
 (11..20).each do |i| list.prepend(i) end
+puts "LL of size #{list.size}"
 list.disp
