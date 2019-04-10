@@ -90,6 +90,25 @@ class LinkedList
     end
     return data_found
   end
+
+  def find(data)
+    curr_node = @head
+    i = 0
+    until curr_node.data == data || curr_node.next.nil?
+      curr_node = curr_node.next_node
+      i += 1
+    end
+    curr_node.data == data ? i : nil
+  end
+
+  def to_s
+    node = @head
+    until node == @tail
+      print "( #{node.data} ) -> "
+      node = node.next_node
+    end
+    print 'nil'
+  end
 end
 
 class Node
@@ -100,13 +119,3 @@ class Node
     @next_node = next_node
   end
 end
-
-list = LinkedList.new(0)
-(1..10).each do |i| list.append(i) end
-(11..20).each do |i| list.prepend(i) end
-
-7.times do list.pop end
-puts "LL of size #{list.size}"
-list.disp
-
-puts list.contains?(3)
